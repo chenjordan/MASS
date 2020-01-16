@@ -1,3 +1,7 @@
 ./log
 *.log
-QA_data
+model
+QA*data
+./data/
+./checkpoints
+
