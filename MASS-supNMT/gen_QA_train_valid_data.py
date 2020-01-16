@@ -3,7 +3,6 @@
 import os
 import csv
 import sys
-sys.path.append('../lang-conv')
 
 import random
 import subprocess
@@ -22,31 +21,6 @@ val_A = os.path.join(dst_root, 'valid.A')
 total_QA = os.path.join(dst_root, 'total_test_QA.txt')
 
 
-def lang_conv(word):
-    tmp = Converter('zh-hant').convert(word)
-    return tmp
-
-
-"""
-# convert dict
-def convert_dict():
-    with open(src_dict) as f:
-        src_data = f.readlines()
-    
-    
-    with open(dst_dict, 'w') as f:
-        for i in src_data:
-            print('-----------------')
-            tmp = i.split('\n')
-            word, idx = tmp[0].split(' ')
-            print(tmp)
-    
-            trans_word = lang_conv(word)
-            print(trans_word)
-            dump_word = trans_word + ' ' + idx + '\n'
-            f.writelines(dump_word)
-"""
-
 # convert csv
 QA_pair = []
 
@@ -54,8 +28,8 @@ with open(src_csv, 'r') as f3:
     rows = csv.reader(f3)
     
     for row in rows:
-        Q = lang_conv(row[0])
-        A = lang_conv(row[1])
+        Q = row[0]
+        A = row[1]
         QA_pair.append((Q.replace('\xa0', ''), A.replace('\xa0', '')))
 
 
